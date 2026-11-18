@@ -1,0 +1,11 @@
+target-version = "py313"
+
+[lint]
+select = ["E", "F", "W", "B", "I", "UP", "ASYNC", "RUF"]
+ignore = ["E501", "RUF012", "ASYNC109", "ASYNC110", "UP049"]
+
+[lint.isort]
+force-sort-within-sections = true
+known-first-party = ["homeassistant"]
+combine-as-imports = true
+split-on-trailing-comma = false

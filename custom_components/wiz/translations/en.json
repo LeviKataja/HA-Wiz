@@ -1,0 +1,111 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured",
+      "cannot_connect": "Failed to connect",
+      "cannot_connect_reason": "Could not set up the device at {host}: {reason}. The Home Assistant log has the details.",
+      "no_devices_found": "No WiZ devices answered, neither to a broadcast nor to a direct query of every address on your network. Make sure the devices are powered and on the same network as Home Assistant, or enter the IP address yourself.",
+      "reauth_successful": "Signing key saved",
+      "reconfigure_successful": "Re-configuration was successful",
+      "unique_id_mismatch": "That IP address belongs to a different WiZ device. Please reconfigure against the same device."
+    },
+    "error": {
+      "bulb_time_out": "The device did not answer on UDP port 38899. Check the IP address, that the device is powered, and that nothing blocks UDP between Home Assistant and the device.",
+      "cannot_connect": "Something at that address refused UDP port 38899. It is probably not a WiZ device, or the IP address is wrong.",
+      "invalid_key_format": "The signing key should be the hex string from the WiZ app export (32 hex characters, no prefix).",
+      "invalid_signing_key": "The device rejected the signing key. Either the key is wrong (it is one key per WiZ home) or the Home Assistant clock is more than about a minute off.",
+      "key_required": "A signing key is required.",
+      "no_ip": "Not a valid IP address.",
+      "no_wiz_light": "The device answered, but not like a WiZ device. The Home Assistant log has the raw answer.",
+      "signing_required": "This device only answers signed requests. Enter the signing key.",
+      "unknown": "Unexpected error, see the Home Assistant log"
+    },
+    "flow_title": "{name} ({host})",
+    "step": {
+      "discovery_confirm": {
+        "description": "Do you want to set up {name} ({host})?"
+      },
+      "pick_device": {
+        "data": {
+          "device": "Device"
+        }
+      },
+      "reauth_confirm": {
+        "data": {
+          "signing_key": "Signing key"
+        },
+        "data_description": {
+          "signing_key": "The udp_signing_key value from the WiZ app's local integration export. It is the same for every device in a WiZ home."
+        },
+        "description": "{name} ({host}) runs firmware that only accepts signed commands, and it needs a valid signing key. If you already entered the right key, check that the Home Assistant clock is correct: the device rejects requests that are more than about a minute old.",
+        "title": "WiZ signing key"
+      },
+      "reconfigure": {
+        "data": {
+          "host": "IP address",
+          "signing_key": "Signing key"
+        },
+        "data_description": {
+          "signing_key": "Only needed for firmware that requires signed commands. Leave empty to remove it."
+        }
+      },
+      "signing_key": {
+        "data": {
+          "signing_key": "Signing key"
+        },
+        "data_description": {
+          "signing_key": "The udp_signing_key value from the WiZ app's local integration export. It is the same for every device in a WiZ home."
+        },
+        "description": "{name} ({host}) runs firmware that only accepts signed commands. Without the key Home Assistant can read its state but cannot control it. Leave the field empty to add it anyway.",
+        "title": "Signing key required"
+      },
+      "user": {
+        "data": {
+          "host": "IP address",
+          "signing_key": "Signing key (optional)"
+        },
+        "data_description": {
+          "host": "Leave empty to search the network.",
+          "signing_key": "Only needed for newer firmware that requires signed commands: the udp_signing_key from the WiZ app's local integration export."
+        },
+        "description": "If you leave the IP address empty, Home Assistant searches the network, using both a broadcast and a direct query of every address on your subnet."
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "dual_head_ratio": {
+        "name": "Dual head ratio"
+      },
+      "effect_speed": {
+        "name": "Effect speed"
+      }
+    }
+  },
+  "exceptions": {
+    "cannot_connect": {
+      "message": "Failed to connect to the WiZ device at {ip_address}: {error}"
+    },
+    "communication_error": {
+      "message": "Error while communicating with {name} ({ip_address}): {error}"
+    },
+    "not_supported": {
+      "message": "The WiZ device does not support this command"
+    },
+    "signature_rejected": {
+      "message": "{name} ({ip_address}) rejected the signing key. Either the key is wrong or the Home Assistant clock is off. Re-enter the key when Home Assistant asks for it."
+    },
+    "signing_key_required": {
+      "message": "{name} ({ip_address}) only accepts signed commands. Enter the signing key from the WiZ app when Home Assistant asks for it."
+    },
+    "timeout": {
+      "message": "Timed out waiting for {name} ({ip_address}) to respond"
+    },
+    "unexpected_device": {
+      "message": "Found WiZ device {mac} at {ip_address}, expected {expected_mac}"
+    },
+    "update_failed": {
+      "message": "Failed to update the WiZ device at {ip_address}: {error}"
+    }
+  }
+}

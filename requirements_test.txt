@@ -1,0 +1,2 @@
+pytest-homeassistant-custom-component
+pywizlight==0.6.7
